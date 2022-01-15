@@ -16,7 +16,6 @@
 		<java.version>1.8</java.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<mockito.version>4.2.0</mockito.version>
-		<jmockit.version>1.49</jmockit.version>
 	</properties>
 	<dependencies>
 
@@ -103,12 +102,7 @@
 			<scope>test</scope>
 			<version>1.9.5</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jmockit</groupId>
-			<artifactId>jmockit</artifactId>
-			<version>${jmockit.version}</version>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -132,14 +126,6 @@
 						</path>
 						<!-- other annotation processors -->
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<argLine>
-		            -javaagent:"${settings.localRepository}"/org/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar
-		         </argLine>
 				</configuration>
 			</plugin>
 		</plugins>
