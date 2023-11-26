@@ -1,0 +1,15 @@
+## RabbitMQ
+spring:
+  rabbitmq:
+    host: ${RMQ_HOST}
+    port: ${RMQ_PORT}
+    username: ${RMQ_USER}
+    password: ${RMQ_PASS}
+
+    
+rabbitmq:
+  batch-process:
+    dg.exchange: lob_proj_direct
+  triggered:
+    routingkey: batch_process.event.triggered
+    queue: batch_process.triggered.queue    

@@ -18,5 +18,4 @@ public interface EmployerMapper {
 	LoginModel toModel(Login source);
 	
 	List<LoginModel> toModel(List<Login> source);
-
 }

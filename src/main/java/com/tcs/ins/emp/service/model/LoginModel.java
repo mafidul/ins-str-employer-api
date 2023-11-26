@@ -1,6 +1,4 @@
-package com.tcs.ins.emp.service.model;
-
-import java.util.Optional;
+ package com.tcs.ins.emp.service.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

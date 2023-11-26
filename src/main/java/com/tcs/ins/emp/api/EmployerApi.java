@@ -32,7 +32,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.tcs.ins.emp.service.DefaultEmployerService;
 import com.tcs.ins.emp.service.EmployerService;
 import com.tcs.ins.emp.service.model.EmployerSearchRequest;
 import com.tcs.ins.emp.service.model.LoginDetailModel;
@@ -50,7 +49,7 @@ public class EmployerApi {
 		this.employerService = employerService;
 	}
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultEmployerService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EmployerApi.class);
 
 	@PostMapping(path = "/login/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<LoginDetailModel> login(@RequestBody LoginDetailModel loginModel) {
@@ -61,8 +60,11 @@ public class EmployerApi {
 	@PostMapping(path = "/profile/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<LoginModel> createLogin(@RequestBody @Valid LoginModel loginModel, UriComponentsBuilder ucb) {
 		LoginModel create = employerService.createLogin(loginModel);
-		return ResponseEntity.created(ucb.path(REQUEST_PARAM_MAPPING + "/{id}").buildAndExpand(create.getId()).toUri())
-				.body(create);
+		return ResponseEntity.created(ucb
+					                 .path(REQUEST_PARAM_MAPPING + "/{id}")
+					                 .buildAndExpand(create.getId())
+					                 .toUri())
+					         .body(create);
 	}
 
 	@GetMapping(path = "/profile/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -80,7 +82,7 @@ public class EmployerApi {
 		EmployerSearchRequest searchRequest = new EmployerSearchRequest(requestParam);
 		PageRequest pageRequest = pageRequest(pageNumber, pageSize, sortBy, sortDirection);
 		Page<LoginModel> page = employerService.searchEmployer(pageRequest, searchRequest);
-		LOGGER.info("Response from Search : {}" + ResponseEntity.ok(page));
+		//LOGGER.info("Response from Search : {}" + ResponseEntity.ok(page));
 		return ResponseEntity.ok(page);
 	}
 
