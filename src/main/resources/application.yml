@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+# Repository
+  datasource:
+    url: jdbc:mysql://${DB_SERVER}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    
+server.port: 8085
